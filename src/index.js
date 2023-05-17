@@ -103,7 +103,7 @@ app.get("/", (req, res) => {
     .json({ status: 200, message: "Bem-vindo! Você está na home da API" });
 });
 
-app.get("/users", isAuthenticated, (req, res) => {
+app.get("/users", (req, res) => {
   if (!users.length) {
     return res.status(404).json({
       success: false,
@@ -152,7 +152,7 @@ app.post("/login", autheticateLogin, (req, res) => {
 });
 
 //MESSAGES
-app.get("/users/:userId/messages", isAuthenticated, checkUserId, (req, res) => {
+app.get("/users/:userId/messages", checkUserId, (req, res) => {
   const { userId } = req.params;
   const user = req.user;
 
